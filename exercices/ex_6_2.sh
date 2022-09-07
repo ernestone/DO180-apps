@@ -25,3 +25,14 @@ oc describe route
 curl \
  php-helloworld-${RHT_OCP4_DEV_USER}-route.${RHT_OCP4_WILDCARD_DOMAIN}
 
+# Delete the current route
+oc delete route/php-helloworld
+
+# Create another route with other name and path
+oc expose svc/php-helloworld \
+ --name=${RHT_OCP4_DEV_USER}-xyz --path=/prueba
+
+curl \
+ ${RHT_OCP4_DEV_USER}-xyz-${RHT_OCP4_DEV_USER}-route.${RHT_OCP4_WILDCARD_DOMAIN}/prueba
+
+
